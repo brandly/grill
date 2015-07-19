@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>chatchatchat</title>
+
+    <style>
+      li.sent {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <p>My id: <span id="my-id"></span></p>
+    <form id="create-connection-form">
+      <label for="friend-id">Friend's ID</label>
+      <input type="text" name="friend-id" id="friend-id-input">
+      <input type="submit">
+    </form>
+
+    <form id="send-data-form">
+      <label>send message</label>
+      <input type="text" id="message-input">
+      <input type="submit">
+    </form>
+
+    <ul id="message-list"></ul>
+
+    <script src="node_modules/peerjs/dist/peer.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
