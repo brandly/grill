@@ -127,8 +127,13 @@
 
 	peer.on('call', function (call) {
 	  console.log('callll', call);
-
-	  // call.answer?
+	  var shouldAnswer = confirm('answer it?');
+	  if (shouldAnswer) {
+	    askForMedia(function (stream) {
+	      waitForStream(call);
+	      call.answer(stream);
+	    });
+	  }
 	});
 
 	// i want to call
@@ -140,14 +145,32 @@
 	callButton.addEventListener('click', function (event) {
 	  event.preventDefault();
 
+	  console.log('requesting media');
+	  askForMedia(function (stream) {
+	    console.log('calling');
+	    var call = peer.call(FRIEND, stream);
+	    waitForStream(call);
+	  });
+	});
+
+	function waitForStream(call) {
+	  var remoteVideo = document.getElementById('remote-video');
+
+	  call.on('stream', function (stream) {
+	    remoteVideo.src = URL.createObjectURL(stream);
+	    remoteVideo.play();
+	  });
+	}
+
+	function askForMedia(cb) {
 	  (0, _getusermedia2['default'])({ audio: true, video: true }, function (err, stream) {
 	    if (err) {
 	      console.log('problem getting user media', err);
 	    } else {
-	      var call = peer.call(FRIEND, stream);
+	      cb(stream);
 	    }
 	  });
-	});
+	}
 
 /***/ },
 /* 1 */
