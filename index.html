@@ -3,12 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <title>chatchatchat</title>
-
-    <style>
-      li.sent {
-        text-align: right;
-      }
-    </style>
   </head>
   <body>
     <p>My id: <span id="my-id"></span></p>
@@ -24,9 +18,11 @@
       <input type="submit">
     </form>
 
+    <button id="call-button">call</button>
+    <video id="remote-video"></video>
+
     <ul id="message-list"></ul>
 
-    <script src="https://rawgit.com/peers/peerjs/master/dist/peer.js"></script>
-    <script src="script.js"></script>
+    <script src="bundle.js"></script>
   </body>
 </html>
