@@ -1,12 +1,12 @@
 module.exports = {
-  entry: './src/entry.js',
+  entry: './src/js/entry.js',
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js'
   },
   module: {
     loaders: [{
-      test: /src.*\.js$/,
+      test: /src\/js.*\.js$/,
       loader: 'babel-loader'
     }]
   }

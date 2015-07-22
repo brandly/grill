@@ -1,0 +1,45 @@
+import React from 'react'
+import { addons } from 'react/addons'
+import ConnectionActions from '../actions/connection-actions'
+
+export default class ComposeText extends React.Component {
+  mixins: [addons.PureRenderMixin]
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: ''
+    }
+  }
+
+  handleFormSubmission(event) {
+    event.preventDefault()
+
+    ConnectionActions.sendText({
+      text: this.state.text
+    })
+
+    this.setText('')
+  }
+
+  setText(text) {
+    this.setState({ text })
+  }
+
+  handleChange(event) {
+    this.setText(event.target.value)
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleFormSubmission.bind(this)}>
+        <input type="text"
+               placeholder="write text"
+               required
+               value={this.state.text}
+               onChange={this.handleChange.bind(this)} />
+        <input type="submit" />
+      </form>
+    )
+  }
+}
