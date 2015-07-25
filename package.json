@@ -1,7 +1,7 @@
 {
-  "name": "try-peer",
+  "name": "grill",
   "version": "0.0.0",
-  "description": "",
+  "description": "peer2peer video chat",
   "dependencies": {
     "URIjs": "^1.15.2",
     "classnames": "^2.1.3",
@@ -16,14 +16,17 @@
   },
   "scripts": {
     "build": "cp src/index.html dist/ & npm run bundle",
-    "bundle": "webpack",
+    "bundle": "webpack --progress --colors",
     "serve": "webpack-dev-server --content-base dist/"
   },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^5.7.4",
     "babel-loader": "^5.3.2",
+    "css-loader": "^0.15.5",
+    "extract-text-webpack-plugin": "^0.8.2",
     "node-libs-browser": "^0.5.2",
+    "style-loader": "^0.12.3",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
   }

@@ -29,6 +29,16 @@ peer.on('call', function (call) {
   PeerActions.receiveCall(call)
 })
 
+peer.on('error', function (err) {
+  console.log('errrrr', err)
+
+  // TODO: REMOVE THIS NONSENSE
+  if (err == 'Error: Could not get an ID from the server.') {
+    // PeerActions.receivePeerId('ayyyyyy')
+  }
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~
+})
+
 const PeerStore = assign({}, EventEmitter, {
   id: null,
   friendId: qs.g,

@@ -2,7 +2,7 @@ import React from 'react'
 import { addons } from 'react/addons'
 import URI from 'URIjs'
 import classNames from 'classnames'
-import ConversationStore from '../stores/conversation-store'
+import ConversationStore from '../../stores/conversation-store'
 
 export default class TextChat extends React.Component {
   mixins: [addons.PureRenderMixin]

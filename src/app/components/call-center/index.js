@@ -1,9 +1,9 @@
 import React from 'react'
 import { addons } from 'react/addons'
-import askForMedia from '../modules/ask-for-media'
-import PeerActions from '../actions/peer-actions'
-import CallActions from '../actions/call-actions'
-import CallStore from '../stores/call-store'
+import askForMedia from '../../modules/ask-for-media'
+import PeerActions from '../../actions/peer-actions'
+import CallActions from '../../actions/call-actions'
+import CallStore from '../../stores/call-store'
 
 export default class CallCenter extends React.Component {
   mixins: [addons.PureRenderMixin]

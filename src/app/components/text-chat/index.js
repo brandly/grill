@@ -1,8 +1,8 @@
 import React from 'react'
 import { addons } from 'react/addons'
-import TextHistory from './text-history'
-import ComposeText from './compose-text'
-import ConversationStore from '../stores/conversation-store'
+import TextHistory from '../text-history'
+import ComposeText from '../compose-text'
+import ConversationStore from '../../stores/conversation-store'
 
 export default class TextChat extends React.Component {
   mixins: [addons.PureRenderMixin]

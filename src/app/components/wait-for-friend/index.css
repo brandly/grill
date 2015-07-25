@@ -1,0 +1,27 @@
+.wait-for-friend {
+  padding: 1rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.wait-for-friend p {
+  font-size: 1.2rem;
+}
+
+.wait-for-friend a {
+  text-decoration: none;
+  color: #555;
+  background-color: rgba(65, 3, 102, 0.05);
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  border: 1px solid rgba(65, 3, 102, 0.1);
+  transition: border 100ms ease-in-out;
+}
+
+.wait-for-friend a:hover {
+  border: 1px solid rgba(65, 3, 102, 0.3);
+}
+
+.share-link-container {
+  margin-bottom: 2rem;
+}

@@ -1,3 +1,5 @@
+import './normalize.css'
+import './global.css'
 import Grill from './components/grill'
 import React from 'react'
 

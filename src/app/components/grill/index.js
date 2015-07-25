@@ -1,9 +1,10 @@
 import React from 'react'
 import { addons } from 'react/addons'
-import PeerStore from '../stores/peer-store'
-import ConnectionStore from '../stores/connection-store'
-import WaitForFriend from './wait-for-friend'
-import ChillZone from './chill-zone'
+import PeerStore from '../../stores/peer-store'
+import ConnectionStore from '../../stores/connection-store'
+import WaitForFriend from '../wait-for-friend'
+import ChillZone from '../chill-zone'
+import LoadingScreen from '../loading-screen'
 
 export default class Grill extends React.Component {
   mixins: [addons.PureRenderMixin]
@@ -38,6 +39,18 @@ export default class Grill extends React.Component {
   render() {
     const { ready, friendIsWaiting } = this.state
     const redirect = friendIsWaiting ? <ChillZone /> : <WaitForFriend />;
-    return ready ? (redirect) : (<h1>GRILL</h1>)
+
+    if (ready) {
+      return (
+        <div>
+          <header><h1 className="header-title">Grill</h1></header>
+          {redirect}
+        </div>
+      )
+    } else {
+      return (
+        <LoadingScreen />
+      )
+    }
   }
 }

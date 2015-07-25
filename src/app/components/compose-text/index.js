@@ -1,6 +1,6 @@
 import React from 'react'
 import { addons } from 'react/addons'
-import ConnectionActions from '../actions/connection-actions'
+import ConnectionActions from '../../actions/connection-actions'
 
 export default class ComposeText extends React.Component {
   mixins: [addons.PureRenderMixin]
