@@ -15,7 +15,7 @@ export default class WaitForFriend extends React.Component {
   }
 
   getLink(id) {
-    return location.origin + '?g=' + id
+    return location.href + '?g=' + id
   }
 
   render() {
