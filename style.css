@@ -1,9 +1,250 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: 'Open Sans', sans-serif;
+  color: #333;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+}
+
+p {
+  margin: 1rem 0;
+  line-height: 1.2;
+}
+
+.fullscreen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+header,
 .faded-bg {
+  color: #FFF;
   background-color: #410366;
   background-image: linear-gradient(45deg, #410366 0, #147C41 100%);
+}
+
+header {
+  height: 3rem;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.header-title {
+  text-align: center;
+  margin: 0;
+  line-height: 3rem;
+  opacity: 0.15;
+  font-size: 2rem;
+}
+
+.under-header {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 3rem);
+  margin-top: 3rem;
+}
+
+.scrolling-panel {
+  height: 100%;
+  overflow: auto;
+}
+.wait-for-friend {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.wait-for-friend p {
+  font-size: 1.2rem;
+}
+
+.wait-for-friend a {
+  text-decoration: none;
+  color: #555;
+  background-color: rgba(65, 3, 102, 0.05);
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  border: 1px solid rgba(65, 3, 102, 0.1);
+  transition: border 100ms ease-in-out;
+  font-size: 1rem;
+}
+
+.wait-for-friend a:hover {
+  border: 1px solid rgba(65, 3, 102, 0.3);
+}
+
+.share-link-container {
+  margin-bottom: 2rem;
+}
+
+.share-link-p {
+  margin: 1.2rem 0;
+}
+.chill-zone {
+  height: 100%;
+}
+.text-chat {
+  position: relative;
+  width: 600px;
+  max-width: calc(100% - 3rem);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.above-footer {
+  position: relative;
+  height: calc(100% - 4.5rem);
+  margin-bottom: 4.5rem;
+}
+
+.absolute-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 4.5rem;
+}
+.text-list {
+  list-style-type: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+.text p {
+  margin: 0;
+  font-weight: 200;
+}
+
+.text {
+  margin: 0.5rem 0;
+}
+
+.text-from {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem
+}
+
+.text-value {
+  display: inline-block;
+  width: calc(100% - 4rem);
+}
+
+.text-when {
+  display: inline-block;
+  vertical-align: top;
+  width: 4rem;
+  font-size: 0.8rem;
+  padding-top: 2px;
+  text-align: right;
+}
+
+.sent .text-from {
+  color: #147C41;
+}
+
+.received .text-from {
+  color: #410366;
+}
+.compose-text {
+  position: relative;
+  margin: 1rem 0.5rem;
+  width: calc(100% - 1rem);
+}
+
+.text-input {
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  line-height: 1.2;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid #EEE;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.submit-text {
+  display: none;
+}
+.loading-screen h1 {
+  opacity: 0.05;
+  font-size: 5rem;
 }
