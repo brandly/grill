@@ -1,6 +1,6 @@
+import './index.css'
 import React from 'react'
 import { addons } from 'react/addons'
-import askForMedia from '../../modules/ask-for-media'
 import PeerActions from '../../actions/peer-actions'
 import CallActions from '../../actions/call-actions'
 import CallStore from '../../stores/call-store'
@@ -18,6 +18,8 @@ export default class CallCenter extends React.Component {
       isReceivingCall: CallStore.isReceivingCall(),
       isCallingFriend: CallStore.isCallingFriend(),
       isVideoChatting: CallStore.isVideoChatting(),
+      localStream: CallStore.getLocalStream(),
+      remoteStream: CallStore.getRemoteStream(),
     }
   }
 
@@ -28,44 +30,21 @@ export default class CallCenter extends React.Component {
   }
 
   initiateVideoChat() {
-    // TODO: move this into action? probably
-    askForMedia(function (err, stream) {
-      if (err) {
-        console.log('problem getting user media', err);
-      } else {
-        PeerActions.initiateCall(stream)
-      }
-    })
-  }
-
-  answerVideoChat() {
-    CallActions.acceptCall()
+    PeerActions.initiateCall(stream)
   }
 
   render() {
-    const { isReceivingCall, isCallingFriend, isVideoChatting } = this.state
+    const { isReceivingCall, isCallingFriend, isVideoChatting, localStream, remoteStream } = this.state
 
-    if (isReceivingCall) {
-      return (
-        <div>
-          <button onClick={this.answerVideoChat.bind(this)}>answer call</button>
-        </div>
-      )
-    } else if (isCallingFriend) {
-      // TODO: cancel button?
-      return (
-        <div>
-          <p>calling...</p>
-        </div>
-      )
-    } else if (isVideoChatting) {
-      return <p>yay</p>
-    } else {
-      return (
-        <div>
-          <button onClick={this.initiateVideoChat.bind(this)}>video chat</button>
-        </div>
-      )
+    if (!isVideoChatting) {
+      return null
     }
+
+    return (
+      <div className="call-center">
+        <video className="friend-video" src={URL.createObjectURL(remoteStream)} autoPlay />
+        <video className="my-video" src={URL.createObjectURL(localStream)} autoPlay />
+      </div>
+    )
   }
 }

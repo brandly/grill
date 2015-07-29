@@ -1,0 +1,27 @@
+.call-center {
+  position: relative;
+  width: calc(100% - 480px);
+  background-color: #2B3E54;
+  float: left;
+  height: 100%;
+}
+
+.call-center video {
+  margin: 0;
+}
+
+.friend-video {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.my-video {
+  width: 140px;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}

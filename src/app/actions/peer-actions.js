@@ -16,10 +16,9 @@ const Actions = {
     })
   },
 
-  initiateCall(stream) {
+  initiateCall() {
     grillDispatcher.dispatch({
-      type: ActionTypes.INITIATE_CALL,
-      stream
+      type: ActionTypes.INITIATE_CALL
     })
   },
 

@@ -12,12 +12,13 @@
     "object-assign": "^3.0.0",
     "peerjs": "^0.3.14",
     "query-string": "^2.3.0",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "react-modal": "^0.3.0"
   },
   "scripts": {
     "build": "cp src/index.html dist/ & npm run bundle",
     "bundle": "webpack --progress --colors",
-    "serve": "webpack-dev-server --content-base dist/",
+    "serve": "webpack-dev-server --devtool inline-source-map --content-base dist/",
     "gh": "npm run build && npm run gh-js && npm run gh-css && cp dist/index.html gh-pages/",
     "gh-js": "uglifyjs --compress --mangle -- dist/bundle.js > gh-pages/bundle.js",
     "gh-css": "cleancss dist/style.css > gh-pages/style.css"

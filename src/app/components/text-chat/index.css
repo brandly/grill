@@ -18,4 +18,10 @@
   right: 0;
   left: 0;
   height: 4.5rem;
+  padding: 1rem 0.5rem;
+}
+
+.show-call-button .compose-text {
+  width: calc(100% - 5rem);
+  float: left;
 }

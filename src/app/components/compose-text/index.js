@@ -37,6 +37,7 @@ export default class ComposeText extends React.Component {
         <input type="text"
                placeholder="Message..."
                required
+               autoFocus
                value={this.state.text}
                onChange={this.handleChange.bind(this)}
                className="text-input" />

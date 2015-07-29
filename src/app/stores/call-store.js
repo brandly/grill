@@ -10,6 +10,10 @@ const CallStore = assign({}, EventEmitter, {
   localStream: null,
   remoteStream: null,
 
+  hasCall() {
+    return !!this.call
+  },
+
   isReceivingCall() {
     return !!this.call && !this.remoteStream && !this.localStream
   },
@@ -47,12 +51,26 @@ const CallStore = assign({}, EventEmitter, {
     this.localStream = stream
     this.emitChange()
   },
+
+  getLocalStream() {
+    return this.localStream
+  },
+
+  getRemoteStream() {
+    return this.remoteStream
+  },
 })
 
 CallStore.dispatchToken = grillDispatcher.register(action => {
   switch (action.type) {
     case ActionTypes.INITIATE_CALL:
-      CallStore.initiateCall(action.stream)
+      askForMedia(function (err, stream) {
+        if (err) {
+          console.log('TODO: handle media denial', err)
+        } else {
+          CallStore.initiateCall(stream)
+        }
+      })
       break
 
     case ActionTypes.RECEIVE_CALL:
