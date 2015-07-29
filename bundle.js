@@ -26911,7 +26911,7 @@
 	  _createClass(WaitForFriend, [{
 	    key: 'getLink',
 	    value: function getLink(id) {
-	      return location.origin + '?g=' + id;
+	      return location.href + '?g=' + id;
 	    }
 	  }, {
 	    key: 'render',
