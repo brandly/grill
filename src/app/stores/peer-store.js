@@ -34,7 +34,7 @@ peer.on('error', function (err) {
 
   // TODO: REMOVE THIS NONSENSE
   if (err == 'Error: Could not get an ID from the server.') {
-    // PeerActions.receivePeerId('ayyyyyy')
+    PeerActions.receivePeerId('ayyyyyy')
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~
 })

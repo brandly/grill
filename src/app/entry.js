@@ -1,4 +1,4 @@
-import './normalize.css'
+import './reset.css'
 import './global.css'
 import Grill from './components/grill'
 import React from 'react'

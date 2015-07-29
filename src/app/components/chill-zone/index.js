@@ -1,3 +1,4 @@
+import './index.css'
 import React from 'react'
 import { addons } from 'react/addons'
 import PeerStore from '../../stores/peer-store'
@@ -23,9 +24,11 @@ export default class ChillZone extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="chill-zone">
         <TextChat />
-        <CallCenter />
+        {
+          //<CallCenter />
+        }
       </div>
     )
   }

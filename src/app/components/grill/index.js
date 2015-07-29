@@ -1,3 +1,4 @@
+import './index.css'
 import React from 'react'
 import { addons } from 'react/addons'
 import PeerStore from '../../stores/peer-store'
@@ -43,8 +44,10 @@ export default class Grill extends React.Component {
     if (ready) {
       return (
         <div>
-          <header><h1 className="header-title">Grill</h1></header>
-          {redirect}
+          <header className="fixed-header"><h1 className="header-title">Grill</h1></header>
+          <div className="under-header">
+            {redirect}
+          </div>
         </div>
       )
     } else {

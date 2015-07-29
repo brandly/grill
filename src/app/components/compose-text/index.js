@@ -1,3 +1,4 @@
+import './index.css'
 import React from 'react'
 import { addons } from 'react/addons'
 import ConnectionActions from '../../actions/connection-actions'
@@ -32,13 +33,14 @@ export default class ComposeText extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmission.bind(this)}>
+      <form className="compose-text" onSubmit={this.handleFormSubmission.bind(this)}>
         <input type="text"
-               placeholder="write text"
+               placeholder="Message..."
                required
                value={this.state.text}
-               onChange={this.handleChange.bind(this)} />
-        <input type="submit" />
+               onChange={this.handleChange.bind(this)}
+               className="text-input" />
+        <input className="submit-text" type="submit" />
       </form>
     )
   }

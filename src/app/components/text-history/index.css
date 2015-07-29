@@ -1,0 +1,42 @@
+.text-list {
+  list-style-type: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+.text p {
+  margin: 0;
+  font-weight: 200;
+}
+
+.text {
+  margin: 0.5rem 0;
+}
+
+.text-from {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem
+}
+
+.text-value {
+  display: inline-block;
+  width: calc(100% - 4rem);
+}
+
+.text-when {
+  display: inline-block;
+  vertical-align: top;
+  width: 4rem;
+  font-size: 0.8rem;
+  padding-top: 2px;
+  text-align: right;
+}
+
+.sent .text-from {
+  color: #147C41;
+}
+
+.received .text-from {
+  color: #410366;
+}

@@ -1,3 +1,4 @@
+import './index.css'
 import React from 'react'
 import { addons } from 'react/addons'
 import URI from 'URIjs'
@@ -37,7 +38,7 @@ export default class TextChat extends React.Component {
   }
 
   render() {
-    const { texts } = this.props
+    const { texts, peerId } = this.props
 
     if (!texts) {
       return null
@@ -45,16 +46,17 @@ export default class TextChat extends React.Component {
 
     const textElements = texts.map((text, i) => {
       const showFrom = (i === 0 || texts.get(i - 1).from !== text.from)
-
       const classes = classNames({
+        sent: text.from === peerId,
+        received: text.from !== peerId,
         text: true
       })
 
       return (
         <li className={classes} key={i}>
-          <h3 className="nickname from">{showFrom ? text.from : ''}</h3>
-          <p className="body"><span className="text">{this.linkify(text.value)}</span></p>
-          <p className="when">{formatDate(text.when)}</p>
+          {showFrom ? (<h3 className="text-from">{text.from}</h3>) : null}
+          <p className="text-value">{this.linkify(text.value)}</p>
+          <p className="text-when">{formatDate(text.when)}</p>
         </li>
       )
     })
