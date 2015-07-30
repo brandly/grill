@@ -19,9 +19,11 @@
     "build": "cp src/index.html dist/ & npm run bundle",
     "bundle": "webpack --progress --colors",
     "serve": "webpack-dev-server --devtool inline-source-map --content-base dist/",
-    "gh": "npm run build && npm run gh-js && npm run gh-css && cp dist/index.html gh-pages/",
+    "gh": "npm run clean && npm run build && npm run gh-js && npm run gh-css && npm run gh-static",
     "gh-js": "uglifyjs --compress --mangle -- dist/bundle.js > gh-pages/bundle.js",
-    "gh-css": "cleancss dist/style.css > gh-pages/style.css"
+    "gh-css": "cleancss dist/style.css > gh-pages/style.css",
+    "gh-static": "cp dist/index.html gh-pages/ & cp dist/*.svg gh-pages/",
+    "clean": "rm dist/* & rm gh-pages/*"
   },
   "license": "MIT",
   "devDependencies": {
