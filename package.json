@@ -1,9 +1,0 @@
-{
-  "name": "try-peer",
-  "version": "0.0.0",
-  "description": "",
-  "dependencies": {
-    "peerjs": "^0.3.14"
-  },
-  "license": "MIT"
-}
