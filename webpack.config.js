@@ -1,4 +1,5 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var autoprefixer = require('autoprefixer-core')
 
 module.exports = {
   entry: './src/app/entry.js',
@@ -13,7 +14,7 @@ module.exports = {
       loader: 'babel-loader'
     }, {
       test: /src.*\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
       loaders: [
@@ -24,5 +25,8 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('style.css')
-  ]
-};
+  ],
+  postcss: function () {
+    return [autoprefixer()]
+  }
+}
