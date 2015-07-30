@@ -1,7 +1,9 @@
 import './index.css'
 import React from 'react'
 import { addons } from 'react/addons'
+import InlineSvg from 'react-inlinesvg'
 import PeerActions from '../../actions/peer-actions'
+import cameraSvg from './camera.svg'
 
 export default class CallCenter extends React.Component {
   mixins: [addons.PureRenderMixin]
@@ -14,9 +16,13 @@ export default class CallCenter extends React.Component {
     const { hasCall, isCallingFriend } = this.props
 
     if (!hasCall) {
-      return <button onClick={this.initiateVideoChat.bind(this)}>callll</button>
+      return (
+        <button className="camera-button" onClick={this.initiateVideoChat.bind(this)}>
+          <InlineSvg src={cameraSvg}></InlineSvg>
+        </button>
+      )
     } else if (isCallingFriend) {
-      return <p>calling...</p>
+      return <p className="calling-indicator">calling...</p>
     } else {
       return null
     }

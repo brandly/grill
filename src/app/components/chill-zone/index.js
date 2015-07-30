@@ -50,7 +50,7 @@ export default class ChillZone extends React.Component {
         <TextChat {...textChatProps} />
         <Modal isOpen={isReceivingCall}>
           <p>Your friend wants to video chat</p>
-          <button onClick={this.answerVideoChat.bind(this)}>Accept</button>
+          <button onClick={this.answerVideoChat.bind(this)}>Let's do it</button>
         </Modal>
       </div>
     )

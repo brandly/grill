@@ -2,3 +2,22 @@
   width: 4rem;
   float: right;
 }
+
+.camera-button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.isvg svg {
+  cursor: pointer;
+  width: 50px;
+  margin: -0.5rem 0;
+  margin-left: -1rem;
+  fill: #CCC;
+}
+
+.calling-indicator {
+  margin: 0;
+  line-height: 36px;
+}

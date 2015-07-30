@@ -43,7 +43,7 @@ export default class CallCenter extends React.Component {
     return (
       <div className="call-center">
         <video className="friend-video" src={URL.createObjectURL(remoteStream)} autoPlay />
-        <video className="my-video" src={URL.createObjectURL(localStream)} autoPlay />
+        <video className="my-video" src={URL.createObjectURL(localStream)} autoPlay muted />
       </div>
     )
   }
