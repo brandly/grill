@@ -19,6 +19,7 @@ h6 {
 p {
   margin: 1rem 0;
   line-height: 1.2;
+  font-weight: 200;
 }
 
 .fullscreen-overlay {

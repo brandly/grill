@@ -15,6 +15,30 @@ const Actions = {
       text
     })
   },
+
+  beginTyping() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.BEGIN_TYPING
+    })
+  },
+
+  receiveBeginTyping() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.RECEIVE_BEGIN_TYPING
+    })
+  },
+
+  stopTyping() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.STOP_TYPING
+    })
+  },
+
+  receiveStopTyping() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.RECEIVE_STOP_TYPING
+    })
+  },
 }
 
 export { Actions as default }

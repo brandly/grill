@@ -22,6 +22,18 @@ const ConnectionStore = assign({}, EventEmitter, {
       value: text
     })
   },
+
+  sendBeginTyping() {
+    this.connection.send({
+      type: 'begin_typing'
+    })
+  },
+
+  sendStopTyping() {
+    this.connection.send({
+      type: 'stop_typing'
+    })
+  },
 })
 
 ConnectionStore.dispatchToken = grillDispatcher.register(action => {
@@ -30,14 +42,32 @@ ConnectionStore.dispatchToken = grillDispatcher.register(action => {
       ConnectionStore.setConnection(action.connection)
 
       action.connection.on('data', function (data) {
-        if (data.type === 'text') {
-          ConnectionActions.receiveText({ text: data.value })
+        switch (data.type) {
+          case 'text':
+            ConnectionActions.receiveText({ text: data.value })
+            break
+
+          case 'begin_typing':
+            ConnectionActions.receiveBeginTyping()
+            break
+
+          case 'stop_typing':
+            ConnectionActions.receiveStopTyping()
+            break
         }
       })
       break
 
     case ActionTypes.SEND_TEXT:
       ConnectionStore.sendText(action.text)
+      break
+
+    case ActionTypes.BEGIN_TYPING:
+      ConnectionStore.sendBeginTyping()
+      break
+
+    case ActionTypes.STOP_TYPING:
+      ConnectionStore.sendStopTyping()
       break
   }
 })

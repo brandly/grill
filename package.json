@@ -13,7 +13,8 @@
     "peerjs": "^0.3.14",
     "query-string": "^2.3.0",
     "react": "^0.13.3",
-    "react-modal": "^0.3.0"
+    "react-modal": "^0.3.0",
+    "webrtcsupport": "^2.1.2"
   },
   "scripts": {
     "build": "cp src/index.html dist/ & npm run bundle",

@@ -1,10 +1,16 @@
 import assign from 'object-assign'
+import webrtcSupport from 'webrtcsupport'
 import Peer from 'peerjs'
 import queryString from 'query-string'
 import EventEmitter from '../modules/event-emitter'
 import grillDispatcher from '../dispatchers/grill-dispatcher'
 import ActionTypes from '../constants/action-types'
 import PeerActions from '../actions/peer-actions'
+import SupportActions from '../actions/support-actions'
+
+if (!webrtcSupport.support) {
+  SupportActions.noSupport()
+}
 
 const qs = queryString.parse(location.search)
 

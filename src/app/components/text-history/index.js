@@ -38,13 +38,13 @@ export default class TextChat extends React.Component {
   }
 
   render() {
-    const { texts, peerId } = this.props
+    const { texts, peerId, isFriendTyping } = this.props
 
     if (!texts) {
       return null
     }
 
-    const textElements = texts.map((text, i) => {
+    let textElements = texts.map((text, i) => {
       const showFrom = (i === 0 || texts.get(i - 1).from !== text.from)
       const classes = classNames({
         sent: text.from === peerId,
@@ -60,6 +60,14 @@ export default class TextChat extends React.Component {
         </li>
       )
     })
+
+    if (isFriendTyping) {
+      textElements = textElements.push(
+        <li key="is-friend-typing">
+          <p className="is-friend-typing">typing...</p>
+        </li>
+      )
+    }
 
     return (
       <div className="scrolling-panel" ref="scroller">

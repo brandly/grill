@@ -7,7 +7,6 @@
 
 .text p {
   margin: 0;
-  font-weight: 200;
 }
 
 .text {
@@ -40,4 +39,11 @@
 
 .received .text-from {
   color: #410366;
+}
+
+.is-friend-typing {
+  margin: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.6px;
 }

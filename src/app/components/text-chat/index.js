@@ -19,6 +19,7 @@ export default class TextChat extends React.Component {
   getState() {
     return {
       texts: ConversationStore.getTexts(),
+      isFriendTyping: ConversationStore.getIsFriendTyping(),
       peerId: PeerStore.getId()
     }
   }
@@ -32,11 +33,13 @@ export default class TextChat extends React.Component {
   }
 
   render() {
-    const { texts, peerId } = this.state
+    const { texts, peerId, isFriendTyping } = this.state
     const { isVideoChatting, hasCall, isCallingFriend, isReceivingCall } = this.props
 
     const showCallButton = !hasCall || isCallingFriend
     const callButtonProps = { hasCall, isCallingFriend }
+
+    const textHistoryProps = { texts, peerId, isFriendTyping }
 
     const footerClasses = classNames({
       'absolute-footer': true,
@@ -46,7 +49,7 @@ export default class TextChat extends React.Component {
     return (
       <div className="text-chat">
         <div className="above-footer">
-          <TextHistory texts={texts} peerId={peerId} />
+          <TextHistory {...textHistoryProps} />
         </div>
         <div className={footerClasses}>
           <ComposeText />

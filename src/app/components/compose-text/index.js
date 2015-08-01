@@ -24,6 +24,12 @@ export default class ComposeText extends React.Component {
   }
 
   setText(text) {
+    if (!this.state.text && text) {
+      ConnectionActions.beginTyping()
+    } else if (this.state.text && !text) {
+      ConnectionActions.stopTyping()
+    }
+
     this.setState({ text })
   }
 

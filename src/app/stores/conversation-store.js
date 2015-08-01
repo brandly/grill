@@ -7,6 +7,12 @@ import PeerStore from './peer-store'
 
 const ConversationStore = assign({}, EventEmitter, {
   texts: List(),
+  isFriendTyping: false,
+
+
+  getIsFriendTyping() {
+    return this.isFriendTyping
+  },
 
   getTexts() {
     return this.texts
@@ -24,13 +30,24 @@ const ConversationStore = assign({}, EventEmitter, {
       from: PeerStore.getFriendId(),
       value
     })
+    this.receiveStopTyping()
   },
 
   _addText(text) {
     text.when = new Date
     this.texts = this.texts.push(text)
     this.emitChange()
-  }
+  },
+
+  receiveBeginTyping() {
+    this.isFriendTyping = true
+    this.emitChange()
+  },
+
+  receiveStopTyping() {
+    this.isFriendTyping = false
+    this.emitChange()
+  },
 })
 
 ConversationStore.dispatchToken = grillDispatcher.register(action => {
@@ -41,6 +58,14 @@ ConversationStore.dispatchToken = grillDispatcher.register(action => {
 
     case ActionTypes.RECEIVE_TEXT:
       ConversationStore.receiveText(action.text)
+      break
+
+    case ActionTypes.RECEIVE_BEGIN_TYPING:
+      ConversationStore.receiveBeginTyping()
+      break
+
+    case ActionTypes.RECEIVE_STOP_TYPING:
+      ConversationStore.receiveStopTyping()
       break
   }
 })
