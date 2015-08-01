@@ -36,6 +36,7 @@ export default class ChillZone extends React.Component {
   }
 
   render() {
+    const { connectionOpen } = this.props
     const { hasCall, isCallingFriend, isReceivingCall, isVideoChatting } = this.state
     const textChatProps = { hasCall, isCallingFriend, isVideoChatting}
 
@@ -48,6 +49,10 @@ export default class ChillZone extends React.Component {
       <div className={classes}>
         {isVideoChatting ? (<CallCenter />) : null}
         <TextChat {...textChatProps} />
+
+        <Modal className="receiving-call-modal" isOpen={!connectionOpen}>
+          <p>Connecting to friend...</p>
+        </Modal>
 
         <Modal className="receiving-call-modal" isOpen={isReceivingCall}>
           <p>Your friend wants to video chat</p>
