@@ -4,6 +4,7 @@ import grillDispatcher from '../dispatchers/grill-dispatcher'
 import ActionTypes from '../constants/action-types'
 import PeerStore from './peer-store'
 import askForMedia from '../modules/ask-for-media'
+import CallActions from '../actions/call-actions'
 
 const CallStore = assign({}, EventEmitter, {
   call: null,
@@ -34,6 +35,14 @@ const CallStore = assign({}, EventEmitter, {
       this.emitChange()
     })
 
+    call.on('close', () => {
+      CallActions.receiveEndCall()
+    })
+
+    call.on('error', (err) => {
+      console.log('TODO: handle call error', err)
+    })
+
     this.emitChange()
   },
 
@@ -59,9 +68,29 @@ const CallStore = assign({}, EventEmitter, {
   getRemoteStream() {
     return this.remoteStream
   },
+
+  endCall() {
+    if (this.localStream) {
+      this.localStream.stop()
+      this.localStream = null
+    }
+
+    if (this.remoteStream) {
+      this.remoteStream.stop()
+      this.remoteStream = null
+    }
+
+    if (this.call) {
+      this.call.close()
+      this.call = null
+    }
+
+    this.emitChange()
+  },
 })
 
 CallStore.dispatchToken = grillDispatcher.register(action => {
+  console.log(action.type)
   switch (action.type) {
     case ActionTypes.INITIATE_CALL:
       askForMedia(function (err, stream) {
@@ -85,6 +114,14 @@ CallStore.dispatchToken = grillDispatcher.register(action => {
           CallStore.acceptCall(stream)
         }
       })
+      break
+
+    case ActionTypes.END_CALL:
+      CallStore.endCall()
+      break
+
+    case ActionTypes.RECEIVE_END_CALL:
+      CallStore.endCall()
       break
   }
 })

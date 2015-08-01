@@ -23,16 +23,12 @@ export default class Grill extends React.Component {
   }
 
   componentWillMount() {
-    PeerStore.addChangeListener(() => {
-      this.setState({
-        friendIsWaiting: this.isFriendWaiting(),
-        ready: !!PeerStore.getId()
-      })
-    })
-
-    ConnectionStore.addChangeListener(() => {
-      this.setState({
-        friendIsWaiting: this.isFriendWaiting()
+    [PeerStore, ConnectionStore].forEach((store) => {
+      store.addChangeListener(() => {
+        this.setState({
+          friendIsWaiting: this.isFriendWaiting(),
+          ready: !!PeerStore.getId()
+        })
       })
     })
   }

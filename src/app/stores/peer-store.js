@@ -39,10 +39,36 @@ peer.on('error', function (err) {
   console.log('errrrr', err)
 
   // TODO: REMOVE THIS NONSENSE
-  if (err == 'Error: Could not get an ID from the server.') {
+  if (err.type === 'network') {
     PeerActions.receivePeerId('ayyyyyy')
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  switch (err.type) {
+    case 'browser-incompatible':
+      SupportActions.noSupport()
+      break
+
+    case 'network':
+      console.log('TODO: handle network failure')
+      break
+
+    case 'peer-unavailable':
+      console.log('TODO: handle peer-unavailable')
+      break
+
+    case 'socket-error':
+      console.log('TODO: handle error from underlying socket')
+      break
+
+    case 'socket-closed':
+      console.log('TODO: handle socket closing unexpectedly')
+      break
+
+    case 'webrtc':
+      console.log('TODO: handle native webrtc errors')
+      break
+  }
 })
 
 const PeerStore = assign({}, EventEmitter, {

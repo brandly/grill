@@ -15,8 +15,6 @@ export default class CallCenter extends React.Component {
 
   getState() {
     return {
-      isReceivingCall: CallStore.isReceivingCall(),
-      isCallingFriend: CallStore.isCallingFriend(),
       isVideoChatting: CallStore.isVideoChatting(),
       localStream: CallStore.getLocalStream(),
       remoteStream: CallStore.getRemoteStream(),
@@ -24,17 +22,26 @@ export default class CallCenter extends React.Component {
   }
 
   componentWillMount() {
-    CallStore.addChangeListener(() => {
+    this._onChange = () => {
       this.setState(this.getState())
-    })
+    }
+    CallStore.addChangeListener(this._onChange)
+  }
+
+  componentWillUnmount() {
+    CallStore.removeChangeListener(this._onChange)
   }
 
   initiateVideoChat() {
     PeerActions.initiateCall(stream)
   }
 
+  endCall() {
+    CallActions.endCall()
+  }
+
   render() {
-    const { isReceivingCall, isCallingFriend, isVideoChatting, localStream, remoteStream } = this.state
+    const { isVideoChatting, localStream, remoteStream } = this.state
 
     if (!isVideoChatting) {
       return null
@@ -42,6 +49,7 @@ export default class CallCenter extends React.Component {
 
     return (
       <div className="call-center">
+        <button className="end-call-button" onClick={this.endCall.bind(this)}>x</button>
         <video className="friend-video" src={URL.createObjectURL(remoteStream)} autoPlay />
         <video className="my-video" src={URL.createObjectURL(localStream)} autoPlay muted />
       </div>

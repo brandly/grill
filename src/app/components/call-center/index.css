@@ -27,3 +27,24 @@
   border-radius: 2px;
   transform: scale(-1, 1); /* mirror video */
 }
+
+.end-call-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 1rem;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.call-center:hover .end-call-button {
+  opacity: 0.5;
+}
+
+.end-call-button:hover {
+  opacity: 1 !important;
+}

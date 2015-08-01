@@ -7,6 +7,18 @@ const Actions = {
       type: ActionTypes.ACCEPT_CALL
     })
   },
+
+  endCall() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.END_CALL
+    })
+  },
+
+  receiveEndCall() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.RECEIVE_END_CALL
+    })
+  },
 }
 
 export { Actions as default }
