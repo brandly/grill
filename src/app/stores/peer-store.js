@@ -71,6 +71,10 @@ peer.on('error', function (err) {
   }
 })
 
+peer.on('close', function () {
+  console.log('TODO: handle peer close')
+})
+
 const PeerStore = assign({}, EventEmitter, {
   id: null,
   friendId: qs.g,

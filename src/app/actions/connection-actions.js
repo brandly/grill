@@ -39,6 +39,12 @@ const Actions = {
       type: ActionTypes.RECEIVE_STOP_TYPING
     })
   },
+
+  closeConnection() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.CLOSE_CONNECTION
+    })
+  },
 }
 
 export { Actions as default }

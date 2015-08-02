@@ -22,6 +22,15 @@ p {
   font-weight: 200;
 }
 
+button {
+  cursor: pointer;
+}
+
+/* hide firefox invalid input stylings */
+input:invalid {
+  box-shadow: none;
+}
+
 .fullscreen-overlay {
   position: absolute;
   top: 0;

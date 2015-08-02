@@ -36,7 +36,10 @@ const CallStore = assign({}, EventEmitter, {
     })
 
     call.on('close', () => {
-      CallActions.receiveEndCall()
+      // If we receive a normal "end call," this will try to fire during a dispatch.
+      setTimeout(() => {
+        if (CallStore.hasCall()) CallActions.receiveEndCall()
+      })
     })
 
     call.on('error', (err) => {
@@ -91,6 +94,7 @@ const CallStore = assign({}, EventEmitter, {
 
 CallStore.dispatchToken = grillDispatcher.register(action => {
   console.log(action.type)
+
   switch (action.type) {
     case ActionTypes.INITIATE_CALL:
       askForMedia(function (err, stream) {

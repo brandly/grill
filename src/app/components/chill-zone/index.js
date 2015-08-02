@@ -31,8 +31,12 @@ export default class ChillZone extends React.Component {
     })
   }
 
-  answerVideoChat() {
+  acceptVideoChat() {
     CallActions.acceptCall()
+  }
+
+  rejectVideoChat() {
+    console.log('tryna reject')
   }
 
   render() {
@@ -56,7 +60,8 @@ export default class ChillZone extends React.Component {
 
         <Modal className="receiving-call-modal" isOpen={isReceivingCall}>
           <p>Your friend wants to video chat</p>
-          <button onClick={this.answerVideoChat.bind(this)}>Let's do it</button>
+          <button className="accept-video-button" onClick={this.acceptVideoChat.bind(this)}>Let's do it</button>
+          <button className="reject-video-button" onClick={this.rejectVideoChat.bind(this)}>I'd rather not</button>
         </Modal>
       </div>
     )

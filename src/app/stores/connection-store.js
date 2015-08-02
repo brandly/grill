@@ -55,12 +55,18 @@ const ConnectionStore = assign({}, EventEmitter, {
     })
 
     connection.on('close', () => {
-
+      ConnectionActions.closeConnection()
     })
 
     connection.on('error', (err) => {
 
     })
+  },
+
+  clearConnection() {
+    this.connection = null
+    this.open = false
+    this.emitChange()
   },
 
   sendText(text) {
@@ -109,6 +115,10 @@ ConnectionStore.dispatchToken = grillDispatcher.register(action => {
 
     case ActionTypes.END_CALL:
       ConnectionStore.sendEndCall()
+      break
+
+    case ActionTypes.CLOSE_CONNECTION:
+      ConnectionStore.clearConnection()
       break
   }
 })

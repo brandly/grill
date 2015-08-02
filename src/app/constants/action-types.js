@@ -6,6 +6,7 @@ const types = keyMirror({
   SEND_TEXT: null,
   RECEIVE_TEXT: null,
   ESTABLISH_CONNECTION: null,
+  CLOSE_CONNECTION: null,
 
   INITIATE_CALL: null,
   RECEIVE_CALL: null,

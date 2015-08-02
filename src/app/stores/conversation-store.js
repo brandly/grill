@@ -9,7 +9,6 @@ const ConversationStore = assign({}, EventEmitter, {
   texts: List(),
   isFriendTyping: false,
 
-
   getIsFriendTyping() {
     return this.isFriendTyping
   },
