@@ -26,7 +26,8 @@ export default class TextChat extends React.Component {
       if (value !== undefined) {
         if (i + 1 < split.length && split[i + 1] === undefined) {
           result.push(
-            <a href={value}
+            <a key={i}
+               href={value}
                target="_blank">{value}</a>
             )
         } else {

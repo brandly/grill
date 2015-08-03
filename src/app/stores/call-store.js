@@ -4,12 +4,14 @@ import grillDispatcher from '../dispatchers/grill-dispatcher'
 import ActionTypes from '../constants/action-types'
 import PeerStore from './peer-store'
 import askForMedia from '../modules/ask-for-media'
+import LoopingAudio from '../modules/looping-audio'
 import CallActions from '../actions/call-actions'
 
 const CallStore = assign({}, EventEmitter, {
   call: null,
   localStream: null,
   remoteStream: null,
+  ringer: new LoopingAudio('grillz_loop.webm'),
 
   hasCall() {
     return !!this.call
@@ -25,6 +27,14 @@ const CallStore = assign({}, EventEmitter, {
 
   isVideoChatting() {
     return !!this.call && !!this.localStream && !!this.remoteStream
+  },
+
+  playRinger() {
+    this.ringer.play()
+  },
+
+  stopRinger() {
+    this.ringer.stop()
   },
 
   setCall(call) {
@@ -109,6 +119,7 @@ CallStore.dispatchToken = grillDispatcher.register(action => {
 
     case ActionTypes.RECEIVE_CALL:
       CallStore.setCall(action.call)
+      CallStore.playRinger()
       break
 
     case ActionTypes.ACCEPT_CALL:
@@ -119,9 +130,14 @@ CallStore.dispatchToken = grillDispatcher.register(action => {
           CallStore.acceptCall(stream)
         }
       })
+      CallStore.stopRinger()
       break
 
     case ActionTypes.DENY_CALL:
+      CallStore.endCall()
+      CallStore.stopRinger()
+      break
+
     case ActionTypes.RECEIVE_DENY_CALL:
     case ActionTypes.END_CALL:
     case ActionTypes.RECEIVE_END_CALL:
