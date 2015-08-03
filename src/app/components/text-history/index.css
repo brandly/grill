@@ -23,6 +23,11 @@
   width: calc(100% - 4rem);
 }
 
+.text-value a {
+  text-decoration: none;
+  color: #63009E;
+}
+
 .text-when {
   display: inline-block;
   vertical-align: top;

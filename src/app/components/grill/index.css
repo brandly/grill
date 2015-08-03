@@ -25,6 +25,8 @@ header {
   line-height: 3rem;
   opacity: 0.15;
   font-size: 2rem;
+  cursor: default;
+  user-select: none;
 }
 
 .under-header {

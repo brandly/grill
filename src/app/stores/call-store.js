@@ -37,6 +37,7 @@ const CallStore = assign({}, EventEmitter, {
 
     call.on('close', () => {
       // If we receive a normal "end call," this will try to fire during a dispatch.
+      // TODO: look into dispatch tokens
       setTimeout(() => {
         if (CallStore.hasCall()) CallActions.receiveEndCall()
       })
@@ -120,10 +121,9 @@ CallStore.dispatchToken = grillDispatcher.register(action => {
       })
       break
 
+    case ActionTypes.DENY_CALL:
+    case ActionTypes.RECEIVE_DENY_CALL:
     case ActionTypes.END_CALL:
-      CallStore.endCall()
-      break
-
     case ActionTypes.RECEIVE_END_CALL:
       CallStore.endCall()
       break

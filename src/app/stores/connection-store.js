@@ -10,6 +10,7 @@ const DataTypes = keyMirror({
   'TEXT': null,
   'BEGIN_TYPING': null,
   'STOP_TYPING': null,
+  'DENY_CALL': null,
   'END_CALL': null,
 })
 
@@ -46,6 +47,10 @@ const ConnectionStore = assign({}, EventEmitter, {
 
         case DataTypes.STOP_TYPING:
           ConnectionActions.receiveStopTyping()
+          break
+
+        case DataTypes.DENY_CALL:
+          CallActions.receiveDenyCall()
           break
 
         case DataTypes.END_CALL:
@@ -88,6 +93,12 @@ const ConnectionStore = assign({}, EventEmitter, {
     })
   },
 
+  sendDenyCall() {
+    this.connection.send({
+      type: DataTypes.DENY_CALL
+    })
+  },
+
   sendEndCall() {
     this.connection.send({
       type: DataTypes.END_CALL
@@ -111,6 +122,10 @@ ConnectionStore.dispatchToken = grillDispatcher.register(action => {
 
     case ActionTypes.STOP_TYPING:
       ConnectionStore.sendStopTyping()
+      break
+
+    case ActionTypes.DENY_CALL:
+      ConnectionStore.sendDenyCall()
       break
 
     case ActionTypes.END_CALL:

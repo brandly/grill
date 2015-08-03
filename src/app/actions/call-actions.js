@@ -8,6 +8,18 @@ const Actions = {
     })
   },
 
+  denyCall() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.DENY_CALL
+    })
+  },
+
+  receiveDenyCall() {
+    grillDispatcher.dispatch({
+      type: ActionTypes.RECEIVE_DENY_CALL
+    })
+  },
+
   endCall() {
     grillDispatcher.dispatch({
       type: ActionTypes.END_CALL
