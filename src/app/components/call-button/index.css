@@ -13,10 +13,11 @@
 .svg-camera {
   fill: transparent;
   stroke: #EEE;
-  stroke-width: 0.7px;
+  stroke-width: 1px;
   height: 39px;
   padding: 1px;
   transition: stroke 100ms ease-in-out;
+  margin: 3px 0;
 }
 
 .svg-camera:hover {
