@@ -32,11 +32,10 @@
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
+  border: none;
   outline: none;
+  padding: 0;
   background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  border-radius: 1rem;
   opacity: 0;
 }
 
@@ -46,4 +45,24 @@
 
 .end-call-button:hover {
   opacity: 1 !important;
+}
+
+.svg-close{
+  width: 25px;
+  stroke: #FFF;
+  stroke-width: 2px;
+  cursor: pointer;
+}
+
+.svg-close:hover .svg-close-x-line1{
+  transform: rotate(270deg);
+}
+
+.svg-close:hover .svg-close-x-line2{
+  transform: rotate(90deg);
+}
+
+.svg-close-x-line1, .svg-close-x-line2{
+  transition: transform 400ms;
+  transform-origin: 50% 50%;
 }

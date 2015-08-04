@@ -59,7 +59,7 @@ export default class TextChat extends React.Component {
 
   createLog(text, i) {
     return (
-      <li className="log">
+      <li className="log" key={i}>
         <p><span className="log-value">{text.value}</span></p>
       </li>
     )
