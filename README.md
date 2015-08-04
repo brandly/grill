@@ -10,6 +10,5 @@
 $ npm install
 $ npm run build
 $ npm run serve
+$ open http://localhost:8080/
 ```
-
-point your browser at `http://localhost:8080/`
