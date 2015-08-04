@@ -22,6 +22,6 @@
 }
 
 .show-call-button .compose-text {
-  width: calc(100% - 5rem);
+  width: calc(100% - 4rem);
   float: left;
 }
