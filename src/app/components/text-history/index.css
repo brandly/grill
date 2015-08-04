@@ -5,30 +5,30 @@
   padding: 0 1rem;
 }
 
-.text p {
+.message p {
   margin: 0;
 }
 
-.text {
+.message {
   margin: 0.5rem 0;
 }
 
-.text-from {
+.message-from {
   margin: 1rem 0 0.5rem;
   font-size: 0.9rem
 }
 
-.text-value {
+.message-value {
   display: inline-block;
   width: calc(100% - 4rem);
 }
 
-.text-value a {
+.message-value a {
   text-decoration: none;
   color: #63009E;
 }
 
-.text-when {
+.message-when {
   display: inline-block;
   vertical-align: top;
   width: 4rem;
@@ -38,12 +38,27 @@
   color: #999;
 }
 
-.sent .text-from {
+.sent .message-from {
   color: #147C41;
 }
 
-.received .text-from {
+.received .message-from {
   color: #410366;
+}
+
+.log p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  margin: 0.7rem;
+}
+
+.log-value {
+  color: #FFF;
+  background-color: #DDD;
+  padding: 0.1rem 0.6rem;
+  border-radius: 15px;
+  text-shadow: 1px 0px 1px #CCC;
 }
 
 .is-friend-typing {

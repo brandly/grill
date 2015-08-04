@@ -38,28 +38,49 @@ export default class TextChat extends React.Component {
     return result
   }
 
+  createMessage(text, i) {
+    const { texts, peerId } = this.props
+
+    const showFrom = (i === 0 || texts.get(i - 1).from !== text.from)
+    const classes = classNames({
+      sent: text.from === peerId,
+      received: text.from !== peerId,
+      message: true
+    })
+
+    return (
+      <li className={classes} key={i}>
+        {showFrom ? (<h3 className="message-from">{text.from}</h3>) : null}
+        <p className="message-value">{this.linkify(text.value)}</p>
+        <p className="message-when">{formatDate(text.when)}</p>
+      </li>
+    )
+  }
+
+  createLog(text, i) {
+    return (
+      <li className="log">
+        <p><span className="log-value">{text.value}</span></p>
+      </li>
+    )
+  }
+
   render() {
-    const { texts, peerId, isFriendTyping } = this.props
+    const { texts, isFriendTyping } = this.props
 
     if (!texts) {
       return null
     }
 
     let textElements = texts.map((text, i) => {
-      const showFrom = (i === 0 || texts.get(i - 1).from !== text.from)
-      const classes = classNames({
-        sent: text.from === peerId,
-        received: text.from !== peerId,
-        text: true
-      })
-
-      return (
-        <li className={classes} key={i}>
-          {showFrom ? (<h3 className="text-from">{text.from}</h3>) : null}
-          <p className="text-value">{this.linkify(text.value)}</p>
-          <p className="text-when">{formatDate(text.when)}</p>
-        </li>
-      )
+      switch (text.type) {
+        case 'message':
+          return this.createMessage(text, i)
+          break
+        case 'log':
+          return this.createLog(text, i)
+          break
+      }
     })
 
     if (isFriendTyping) {

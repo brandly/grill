@@ -49,9 +49,9 @@ export default class CallCenter extends React.Component {
 
     return (
       <div className="call-center">
-        <button className="end-call-button" onClick={this.endCall.bind(this)}>x</button>
         <video className="friend-video" src={URL.createObjectURL(remoteStream)} autoPlay />
         <video className="my-video" src={URL.createObjectURL(localStream)} autoPlay muted />
+        <button className="end-call-button" onClick={this.endCall.bind(this)}>x</button>
       </div>
     )
   }
