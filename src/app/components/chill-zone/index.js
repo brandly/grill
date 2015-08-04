@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import classNames from 'classnames'
 import CallActions from '../../actions/call-actions'
 import CallStore from '../../stores/call-store'
+import NotificationStore from '../../stores/notification-store'
 import TextChat from '../text-chat'
 import CallCenter from '../call-center'
 
