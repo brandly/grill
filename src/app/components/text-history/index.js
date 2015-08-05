@@ -52,7 +52,7 @@ export default class TextChat extends React.Component {
       <li className={classes} key={i}>
         {showFrom ? (<h3 className="message-from">{text.from}</h3>) : null}
         <p className="message-value">{this.linkify(text.value)}</p>
-        <p className="message-when">{formatDate(text.when)}</p>
+        <abbr className="message-when" title={fullDate(text.when)}>{timestamp(text.when)}</abbr>
       </li>
     )
   }
@@ -101,13 +101,40 @@ export default class TextChat extends React.Component {
   }
 }
 
-function formatDate(d) {
-  return `${twoDigits(d.getHours())}:${twoDigits(d.getMinutes())}:${twoDigits(d.getSeconds())}`
+function timestamp(d) {
+  const basicHours = d.getHours()
+  const postfix = (basicHours < 12) ? 'AM' : 'PM'
+  const hours = (basicHours > 12) ? (basicHours - 12) : basicHours
+  return `${hours}:${d.getMinutes()} ${postfix}`
 }
 
-function twoDigits(str) {
-  str = '' + str
-  return (str.length < 2) ? ('0' + str) : str
+function fullDate(d) {
+  return `${daysOfWeek[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${timestamp(d)}`
 }
+
+const daysOfWeek = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday'
+]
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
 
 export { TextChat as default }
