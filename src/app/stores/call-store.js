@@ -90,7 +90,7 @@ const CallStore = assign({}, EventEmitter, {
     }
 
     if (this.remoteStream) {
-      this.remoteStream.stop()
+      this.remoteStream.stop && this.remoteStream.stop()
       this.remoteStream = null
     }
 
