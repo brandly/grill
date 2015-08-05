@@ -69,3 +69,8 @@
   letter-spacing: 0.6px;
   color: #999;
 }
+
+.img-preview {
+  max-width: 100%;
+  margin: 0.5rem 0;
+}

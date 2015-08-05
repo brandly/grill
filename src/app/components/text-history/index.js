@@ -5,6 +5,8 @@ import URI from 'URIjs'
 import classNames from 'classnames'
 import ConversationStore from '../../stores/conversation-store'
 
+const IMAGE_REGEX = /\.(jpe?g|png|gif|svg)$/i
+
 export default class TextChat extends React.Component {
   mixins: [addons.PureRenderMixin]
 
@@ -38,6 +40,24 @@ export default class TextChat extends React.Component {
     return result
   }
 
+  getImages(text) {
+    const urls = text.match(URI.find_uri_expression)
+
+    if (urls) {
+      return urls.filter((url) => {
+          return IMAGE_REGEX.test(url)
+        })
+        .map((imgUrl, i) => {
+          const key = 'img-' + i
+          return (
+            <a href={imgUrl} target="_blank" key={key}>
+              <img className="img-preview" src={imgUrl} />
+            </a>
+          )
+        })
+    }
+  }
+
   createMessage(text, i) {
     const { texts, peerId } = this.props
 
@@ -53,6 +73,7 @@ export default class TextChat extends React.Component {
         {showFrom ? (<h3 className="message-from">{text.from}</h3>) : null}
         <p className="message-value">{this.linkify(text.value)}</p>
         <abbr className="message-when" title={fullDate(text.when)}>{timestamp(text.when)}</abbr>
+        {this.getImages(text.value)}
       </li>
     )
   }
