@@ -17,6 +17,7 @@ const types = keyMirror({
   RECEIVE_END_CALL: null,
 
   SET_NAME_FOR_ID: null,
+  RECEIVE_NAME_FOR_ID: null,
   NO_SUPPORT: null,
 
   BEGIN_TYPING: null,

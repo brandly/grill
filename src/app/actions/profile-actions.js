@@ -8,6 +8,13 @@ const Actions = {
       name, id
     })
   },
+
+  receiveNameForId({ name, id }) {
+    grillDispatcher.dispatch({
+      type: ActionTypes.RECEIVE_NAME_FOR_ID,
+      name, id
+    })
+  },
 }
 
 export { Actions as default }

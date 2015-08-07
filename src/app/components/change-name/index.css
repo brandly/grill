@@ -1,9 +1,9 @@
-.compose-text {
-  position: relative;
-  width: 100%;
+
+.change-name input[type="submit"] {
+  display: none;
 }
 
-.text-input {
+.change-name input[type="text"] {
   line-height: 1.2;
   padding: 0.5rem 0.8rem;
   border: 2px solid #EEE;
@@ -11,8 +11,4 @@
   width: 100%;
   font-size: 1rem;
   font-weight: 300;
-}
-
-.submit-text {
-  display: none;
 }

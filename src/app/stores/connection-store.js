@@ -5,6 +5,7 @@ import grillDispatcher from '../dispatchers/grill-dispatcher'
 import ActionTypes from '../constants/action-types'
 import ConnectionActions from '../actions/connection-actions'
 import CallActions from '../actions/call-actions'
+import ProfileActions from '../actions/profile-actions'
 
 const DataTypes = keyMirror({
   'TEXT': null,
@@ -12,6 +13,7 @@ const DataTypes = keyMirror({
   'STOP_TYPING': null,
   'DENY_CALL': null,
   'END_CALL': null,
+  'NAME_FOR_ID': null,
 })
 
 const ConnectionStore = assign({}, EventEmitter, {
@@ -55,6 +57,13 @@ const ConnectionStore = assign({}, EventEmitter, {
 
         case DataTypes.END_CALL:
           CallActions.receiveEndCall()
+          break
+
+        case DataTypes.NAME_FOR_ID:
+          ProfileActions.receiveNameForId({
+            name: data.name,
+            id: data.id
+          })
           break
       }
     })
@@ -104,6 +113,13 @@ const ConnectionStore = assign({}, EventEmitter, {
       type: DataTypes.END_CALL
     })
   },
+
+  sendNameForId(name, id) {
+    this.connection.send({
+      type: DataTypes.NAME_FOR_ID,
+      name, id
+    })
+  },
 })
 
 ConnectionStore.dispatchToken = grillDispatcher.register(action => {
@@ -134,6 +150,10 @@ ConnectionStore.dispatchToken = grillDispatcher.register(action => {
 
     case ActionTypes.CLOSE_CONNECTION:
       ConnectionStore.clearConnection()
+      break
+
+    case ActionTypes.SET_NAME_FOR_ID:
+      ConnectionStore.sendNameForId(action.name, action.id)
       break
   }
 })

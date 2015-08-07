@@ -5,9 +5,11 @@ import Modal from 'react-modal'
 import classNames from 'classnames'
 import CallActions from '../../actions/call-actions'
 import CallStore from '../../stores/call-store'
+import ProfileStore from '../../stores/profile-store'
 import NotificationStore from '../../stores/notification-store'
 import TextChat from '../text-chat'
 import CallCenter from '../call-center'
+import ChangeName from '../change-name'
 
 export default class ChillZone extends React.Component {
   mixins: [addons.PureRenderMixin]
@@ -22,13 +24,16 @@ export default class ChillZone extends React.Component {
       hasCall: CallStore.hasCall(),
       isCallingFriend: CallStore.isCallingFriend(),
       isReceivingCall: CallStore.isReceivingCall(),
-      isVideoChatting: CallStore.isVideoChatting()
+      isVideoChatting: CallStore.isVideoChatting(),
+      isChangingName: ProfileStore.isChangingName(),
     }
   }
 
   componentWillMount() {
-    CallStore.addChangeListener(() => {
-      this.setState(this.getState())
+    [CallStore, ProfileStore].forEach((store) => {
+      store.addChangeListener(() => {
+        this.setState(this.getState())
+      })
     })
   }
 
@@ -42,7 +47,7 @@ export default class ChillZone extends React.Component {
 
   render() {
     const { connectionOpen } = this.props
-    const { hasCall, isCallingFriend, isReceivingCall, isVideoChatting } = this.state
+    const { hasCall, isCallingFriend, isReceivingCall, isVideoChatting, isChangingName } = this.state
     const textChatProps = { hasCall, isCallingFriend, isVideoChatting}
 
     const classes = classNames({
@@ -55,7 +60,12 @@ export default class ChillZone extends React.Component {
         {isVideoChatting ? (<CallCenter />) : null}
         <TextChat {...textChatProps} />
 
-        <Modal className="receiving-call-modal" isOpen={!connectionOpen}>
+        <Modal className="change-name-modal" isOpen={isChangingName}>
+          <p>What's your name?</p>
+          <ChangeName />
+        </Modal>
+
+        <Modal isOpen={!connectionOpen}>
           <p>Connecting to friend...</p>
         </Modal>
 

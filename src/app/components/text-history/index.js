@@ -59,7 +59,7 @@ export default class TextChat extends React.Component {
   }
 
   createMessage(text, i) {
-    const { texts, peerId } = this.props
+    const { texts, peerId, idToName } = this.props
 
     const showFrom = (i === 0 || texts.get(i - 1).from !== text.from)
     const classes = classNames({
@@ -70,7 +70,7 @@ export default class TextChat extends React.Component {
 
     return (
       <li className={classes} key={i}>
-        {showFrom ? (<h3 className="message-from">{text.from}</h3>) : null}
+        {showFrom ? (<h3 className="message-from">{idToName[text.from] || text.from}</h3>) : null}
         <p className="message-value">{this.linkify(text.value)}</p>
         <abbr className="message-when" title={fullDate(text.when)}>{timestamp(text.when)}</abbr>
         {this.getImages(text.value)}
@@ -126,11 +126,16 @@ function timestamp(d) {
   const basicHours = d.getHours()
   const postfix = (basicHours < 12) ? 'AM' : 'PM'
   const hours = (basicHours > 12) ? (basicHours - 12) : basicHours
-  return `${hours}:${d.getMinutes()} ${postfix}`
+  return `${hours}:${twoDigits(d.getMinutes())} ${postfix}`
 }
 
 function fullDate(d) {
   return `${daysOfWeek[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${timestamp(d)}`
+}
+
+function twoDigits(num) {
+  num = num.toString()
+  return (num.length < 2) ? ('0' + num) : num
 }
 
 const daysOfWeek = [
