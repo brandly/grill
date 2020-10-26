@@ -15,6 +15,7 @@
     "query-string": "2.4.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-inlinesvg": "2.1.1",
     "react-modal": "3.11.2",
     "visibilityjs": "1.2.8",
     "webrtcsupport": "2.2.0"
@@ -32,7 +33,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "parcel-bundler": "1.12.4",
-    "react-inlinesvg": "2.1.1"
+    "parcel-bundler": "1.12.4"
   }
 }
