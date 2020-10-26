@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import PeerStore from '../../stores/peer-store'
 import ConnectionStore from '../../stores/connection-store'
 import WaitForFriend from '../wait-for-friend'
@@ -8,8 +7,6 @@ import ChillZone from '../chill-zone'
 import LoadingScreen from '../loading-screen'
 
 export default class Grill extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = this.getState()

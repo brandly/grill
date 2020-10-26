@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import classNames from 'classnames'
 import ConversationStore from '../../stores/conversation-store'
 import PeerStore from '../../stores/peer-store'
@@ -10,8 +9,6 @@ import ComposeText from '../compose-text'
 import CallButton from '../call-button'
 
 export default class TextChat extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = this.getState()

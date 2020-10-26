@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import URI from 'URIjs'
 import classNames from 'classnames'
 import ConversationStore from '../../stores/conversation-store'
@@ -8,8 +7,6 @@ import ConversationStore from '../../stores/conversation-store'
 const IMAGE_REGEX = /\.(jpe?g|png|gif|svg)$/i
 
 export default class TextChat extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   scrollToBottom() {
     const el = React.findDOMNode(this.refs.scroller)
     el.scrollTop = el.scrollHeight
@@ -162,5 +159,3 @@ const months = [
   'November',
   'December'
 ]
-
-export { TextChat as default }

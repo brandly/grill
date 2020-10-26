@@ -1,13 +1,10 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import InlineSvg from 'react-inlinesvg'
 import PeerActions from '../../actions/peer-actions'
 import cameraSvg from './camera.svg'
 
 export default class CallCenter extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   initiateVideoChat() {
     PeerActions.initiateCall()
   }

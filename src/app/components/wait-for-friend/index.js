@@ -1,12 +1,9 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import PeerStore from '../../stores/peer-store'
 import ChangeName from '../change-name'
 
 export default class WaitForFriend extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = {

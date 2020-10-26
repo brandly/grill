@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import Modal from 'react-modal'
 import classNames from 'classnames'
 import CallActions from '../../actions/call-actions'
@@ -12,8 +11,6 @@ import CallCenter from '../call-center'
 import ChangeName from '../change-name'
 
 export default class ChillZone extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = this.getState()

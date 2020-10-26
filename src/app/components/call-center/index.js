@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import InlineSvg from 'react-inlinesvg'
 import PeerActions from '../../actions/peer-actions'
 import CallActions from '../../actions/call-actions'
@@ -8,8 +7,6 @@ import CallStore from '../../stores/call-store'
 import closeSvg from './close.svg'
 
 export default class CallCenter extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = this.getState()
