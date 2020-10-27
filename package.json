@@ -22,17 +22,12 @@
   },
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "cp src/*.html dist/ & cp src/*.webm dist/ & npm run bundle",
-    "bundle": "webpack --progress --colors",
-    "serve": "webpack-dev-server --devtool inline-source-map --content-base dist/",
-    "gh": "npm run clean && npm run build && npm run gh-js && npm run gh-css && npm run gh-static",
-    "gh-js": "uglifyjs --compress --mangle -- dist/bundle.js > gh-pages/bundle.js",
-    "gh-css": "cleancss dist/style.css > gh-pages/style.css",
-    "gh-static": "cp dist/*.html gh-pages/ & cp dist/*.svg gh-pages/ & cp dist/*.webm gh-pages/",
+    "deploy": "parcel build index.html --public-url ./ && gh-pages --dist dist/",
     "clean": "rm dist/* & rm gh-pages/*"
   },
   "license": "MIT",
   "devDependencies": {
+    "gh-pages": "3.1.0",
     "parcel-bundler": "1.12.4"
   }
 }
