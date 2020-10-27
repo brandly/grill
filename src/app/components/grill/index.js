@@ -16,7 +16,7 @@ export default class Grill extends React.Component {
     return {
       friendIsWaiting: this.isFriendWaiting(),
       peerReady: !!PeerStore.getId(),
-      connectionOpen: ConnectionStore.isOpen(),
+      connectionOpen: ConnectionStore.isOpen()
     }
   }
 
@@ -25,7 +25,7 @@ export default class Grill extends React.Component {
   }
 
   componentWillMount() {
-    [PeerStore, ConnectionStore].forEach((store) => {
+    ;[PeerStore, ConnectionStore].forEach((store) => {
       store.addChangeListener(() => {
         this.setState(this.getState())
       })
@@ -35,23 +35,23 @@ export default class Grill extends React.Component {
   render() {
     const { peerReady, friendIsWaiting, connectionOpen } = this.state
     const chillZoneProps = { connectionOpen }
-    const redirect = friendIsWaiting ? <ChillZone {...chillZoneProps} /> : <WaitForFriend />;
+    const redirect = friendIsWaiting ? (
+      <ChillZone {...chillZoneProps} />
+    ) : (
+      <WaitForFriend />
+    )
 
     if (peerReady) {
       return (
         <div>
-          <header className="fixed-header"><h1 className="header-title">Grill</h1></header>
-          <div className="under-header">
-            {redirect}
-          </div>
-
-
+          <header className="fixed-header">
+            <h1 className="header-title">Grill</h1>
+          </header>
+          <div className="under-header">{redirect}</div>
         </div>
       )
     } else {
-      return (
-        <LoadingScreen />
-      )
+      return <LoadingScreen />
     }
   }
 }

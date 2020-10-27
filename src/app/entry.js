@@ -8,7 +8,4 @@ import Grill from './components/grill'
 const mainElement = document.getElementById('main')
 Modal.setAppElement(mainElement)
 
-render(
-  <Grill />,
-  mainElement
-)
+render(<Grill />, mainElement)

@@ -19,12 +19,12 @@ export default class TextChat extends React.Component {
       texts: ConversationStore.getTexts(),
       isFriendTyping: ConversationStore.getIsFriendTyping(),
       peerId: PeerStore.getId(),
-      idToName: ProfileStore.getIdToNameMap(),
+      idToName: ProfileStore.getIdToNameMap()
     }
   }
 
   componentWillMount() {
-    [ConversationStore, PeerStore, ProfileStore].forEach(store => {
+    ;[ConversationStore, PeerStore, ProfileStore].forEach((store) => {
       store.addChangeListener(() => {
         this.setState(this.getState())
       })
@@ -33,7 +33,12 @@ export default class TextChat extends React.Component {
 
   render() {
     const { texts, peerId, isFriendTyping, idToName } = this.state
-    const { isVideoChatting, hasCall, isCallingFriend, isReceivingCall } = this.props
+    const {
+      isVideoChatting,
+      hasCall,
+      isCallingFriend,
+      isReceivingCall
+    } = this.props
 
     const showCallButton = !hasCall || isCallingFriend
     const callButtonProps = { hasCall, isCallingFriend }
@@ -52,7 +57,7 @@ export default class TextChat extends React.Component {
         </div>
         <div className={footerClasses}>
           <ComposeText />
-          {showCallButton ? (<CallButton {...callButtonProps} />) : null}
+          {showCallButton ? <CallButton {...callButtonProps} /> : null}
         </div>
       </div>
     )

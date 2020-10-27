@@ -44,7 +44,7 @@ const Actions = {
     grillDispatcher.dispatch({
       type: ActionTypes.CLOSE_CONNECTION
     })
-  },
+  }
 }
 
 export { Actions as default }

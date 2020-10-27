@@ -98,10 +98,10 @@ const PeerStore = assign({}, EventEmitter, {
 
   createCall(stream) {
     return peer.call(this.friendId, stream)
-  },
+  }
 })
 
-PeerStore.dispatchToken = grillDispatcher.register(action => {
+PeerStore.dispatchToken = grillDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_PEER_ID:
       PeerStore.setId(action.id)

@@ -36,14 +36,19 @@ export default class ComposeText extends React.Component {
 
   render() {
     return (
-      <form className="compose-text" onSubmit={this.handleFormSubmission.bind(this)}>
-        <input type="text"
-               placeholder="Message..."
-               required
-               autoFocus
-               value={this.state.text}
-               onChange={this.handleChange.bind(this)}
-               className="text-input" />
+      <form
+        className="compose-text"
+        onSubmit={this.handleFormSubmission.bind(this)}
+      >
+        <input
+          type="text"
+          placeholder="Message..."
+          required
+          autoFocus
+          value={this.state.text}
+          onChange={this.handleChange.bind(this)}
+          className="text-input"
+        />
         <input className="submit-text" type="submit" />
       </form>
     )

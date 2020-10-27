@@ -39,10 +39,10 @@ const NotificationStore = assign({}, EventEmitter, {
 
   _shouldSend() {
     return this.isSupported && this.isPermitted && !this.isVisible
-  },
+  }
 })
 
-NotificationStore.dispatchToken = grillDispatcher.register(action => {
+NotificationStore.dispatchToken = grillDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_TEXT:
       NotificationStore.textNotification(action.text)

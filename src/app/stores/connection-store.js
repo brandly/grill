@@ -8,12 +8,12 @@ import CallActions from '../actions/call-actions'
 import ProfileActions from '../actions/profile-actions'
 
 const DataTypes = keyMirror({
-  'TEXT': null,
-  'BEGIN_TYPING': null,
-  'STOP_TYPING': null,
-  'DENY_CALL': null,
-  'END_CALL': null,
-  'NAME_FOR_ID': null,
+  TEXT: null,
+  BEGIN_TYPING: null,
+  STOP_TYPING: null,
+  DENY_CALL: null,
+  END_CALL: null,
+  NAME_FOR_ID: null
 })
 
 const ConnectionStore = assign({}, EventEmitter, {
@@ -72,9 +72,7 @@ const ConnectionStore = assign({}, EventEmitter, {
       ConnectionActions.closeConnection()
     })
 
-    connection.on('error', (err) => {
-
-    })
+    connection.on('error', (err) => {})
   },
 
   clearConnection() {
@@ -117,12 +115,13 @@ const ConnectionStore = assign({}, EventEmitter, {
   sendNameForId(name, id) {
     this.connection.send({
       type: DataTypes.NAME_FOR_ID,
-      name, id
+      name,
+      id
     })
-  },
+  }
 })
 
-ConnectionStore.dispatchToken = grillDispatcher.register(action => {
+ConnectionStore.dispatchToken = grillDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.ESTABLISH_CONNECTION:
       ConnectionStore.setConnection(action.connection)

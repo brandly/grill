@@ -22,7 +22,11 @@ export default class WaitForFriend extends React.Component {
       <div className="wait-for-friend">
         <div className="share-link-container">
           <p>Share this link with a friend to begin chatting</p>
-          <p className="share-link-p"><a href={link} target="_blank">{ link }</a></p>
+          <p className="share-link-p">
+            <a href={link} target="_blank">
+              {link}
+            </a>
+          </p>
         </div>
 
         <div>

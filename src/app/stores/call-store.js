@@ -100,10 +100,10 @@ const CallStore = assign({}, EventEmitter, {
     }
 
     this.emitChange()
-  },
+  }
 })
 
-CallStore.dispatchToken = grillDispatcher.register(action => {
+CallStore.dispatchToken = grillDispatcher.register((action) => {
   console.log(action.type)
 
   switch (action.type) {

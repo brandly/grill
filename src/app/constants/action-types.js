@@ -23,7 +23,7 @@ const types = keyMirror({
   BEGIN_TYPING: null,
   RECEIVE_BEGIN_TYPING: null,
   STOP_TYPING: null,
-  RECEIVE_STOP_TYPING: null,
+  RECEIVE_STOP_TYPING: null
 })
 
 export { types as default }
