@@ -8,7 +8,6 @@
 
 ```shell
 $ npm install
-$ npm run build
-$ npm run serve
-$ open http://localhost:8080/
+$ npm start
+$ open http://localhost:1234/
 ```
