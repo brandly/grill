@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import classNames from 'classnames'
 import ConversationStore from '../../stores/conversation-store'
 import PeerStore from '../../stores/peer-store'
@@ -10,8 +9,6 @@ import ComposeText from '../compose-text'
 import CallButton from '../call-button'
 
 export default class TextChat extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = this.getState()
@@ -22,12 +19,12 @@ export default class TextChat extends React.Component {
       texts: ConversationStore.getTexts(),
       isFriendTyping: ConversationStore.getIsFriendTyping(),
       peerId: PeerStore.getId(),
-      idToName: ProfileStore.getIdToNameMap(),
+      idToName: ProfileStore.getIdToNameMap()
     }
   }
 
   componentWillMount() {
-    [ConversationStore, PeerStore, ProfileStore].forEach(store => {
+    ;[ConversationStore, PeerStore, ProfileStore].forEach((store) => {
       store.addChangeListener(() => {
         this.setState(this.getState())
       })
@@ -36,7 +33,12 @@ export default class TextChat extends React.Component {
 
   render() {
     const { texts, peerId, isFriendTyping, idToName } = this.state
-    const { isVideoChatting, hasCall, isCallingFriend, isReceivingCall } = this.props
+    const {
+      isVideoChatting,
+      hasCall,
+      isCallingFriend,
+      isReceivingCall
+    } = this.props
 
     const showCallButton = !hasCall || isCallingFriend
     const callButtonProps = { hasCall, isCallingFriend }
@@ -55,7 +57,7 @@ export default class TextChat extends React.Component {
         </div>
         <div className={footerClasses}>
           <ComposeText />
-          {showCallButton ? (<CallButton {...callButtonProps} />) : null}
+          {showCallButton ? <CallButton {...callButtonProps} /> : null}
         </div>
       </div>
     )

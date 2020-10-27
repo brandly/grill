@@ -30,7 +30,7 @@ const Actions = {
     grillDispatcher.dispatch({
       type: ActionTypes.RECEIVE_END_CALL
     })
-  },
+  }
 }
 
 export { Actions as default }

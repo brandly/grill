@@ -1,12 +1,9 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import PeerStore from '../../stores/peer-store'
 import ChangeName from '../change-name'
 
 export default class WaitForFriend extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = {
@@ -25,7 +22,11 @@ export default class WaitForFriend extends React.Component {
       <div className="wait-for-friend">
         <div className="share-link-container">
           <p>Share this link with a friend to begin chatting</p>
-          <p className="share-link-p"><a href={link} target="_blank">{ link }</a></p>
+          <p className="share-link-p">
+            <a href={link} target="_blank">
+              {link}
+            </a>
+          </p>
         </div>
 
         <div>

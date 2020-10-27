@@ -47,7 +47,7 @@ const ConversationStore = assign({}, EventEmitter, {
   },
 
   _addText(text) {
-    text.when = new Date
+    text.when = new Date()
     this.texts = this.texts.push(text)
     this.emitChange()
   },
@@ -60,10 +60,10 @@ const ConversationStore = assign({}, EventEmitter, {
   receiveStopTyping() {
     this.isFriendTyping = false
     this.emitChange()
-  },
+  }
 })
 
-ConversationStore.dispatchToken = grillDispatcher.register(action => {
+ConversationStore.dispatchToken = grillDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.SEND_TEXT:
       ConversationStore.sendText(action.text)

@@ -6,7 +6,7 @@ const Actions = {
     grillDispatcher.dispatch({
       type: ActionTypes.NO_SUPPORT
     })
-  },
+  }
 }
 
 export { Actions as default }

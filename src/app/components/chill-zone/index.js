@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import Modal from 'react-modal'
 import classNames from 'classnames'
 import CallActions from '../../actions/call-actions'
@@ -12,8 +11,6 @@ import CallCenter from '../call-center'
 import ChangeName from '../change-name'
 
 export default class ChillZone extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = this.getState()
@@ -25,12 +22,12 @@ export default class ChillZone extends React.Component {
       isCallingFriend: CallStore.isCallingFriend(),
       isReceivingCall: CallStore.isReceivingCall(),
       isVideoChatting: CallStore.isVideoChatting(),
-      isChangingName: ProfileStore.isChangingName(),
+      isChangingName: ProfileStore.isChangingName()
     }
   }
 
   componentWillMount() {
-    [CallStore, ProfileStore].forEach((store) => {
+    ;[CallStore, ProfileStore].forEach((store) => {
       store.addChangeListener(() => {
         this.setState(this.getState())
       })
@@ -47,8 +44,14 @@ export default class ChillZone extends React.Component {
 
   render() {
     const { connectionOpen } = this.props
-    const { hasCall, isCallingFriend, isReceivingCall, isVideoChatting, isChangingName } = this.state
-    const textChatProps = { hasCall, isCallingFriend, isVideoChatting}
+    const {
+      hasCall,
+      isCallingFriend,
+      isReceivingCall,
+      isVideoChatting,
+      isChangingName
+    } = this.state
+    const textChatProps = { hasCall, isCallingFriend, isVideoChatting }
 
     const classes = classNames({
       'chill-zone': true,
@@ -57,7 +60,7 @@ export default class ChillZone extends React.Component {
 
     return (
       <div className={classes}>
-        {isVideoChatting ? (<CallCenter />) : null}
+        {isVideoChatting ? <CallCenter /> : null}
         <TextChat {...textChatProps} />
 
         <Modal className="change-name-modal" isOpen={isChangingName}>
@@ -71,8 +74,18 @@ export default class ChillZone extends React.Component {
 
         <Modal className="receiving-call-modal" isOpen={isReceivingCall}>
           <p>Your friend wants to video chat</p>
-          <button className="accept-video-button" onClick={this.acceptVideoChat.bind(this)}>Let's do it</button>
-          <button className="reject-video-button" onClick={this.denyVideoChat.bind(this)}>I'd rather not</button>
+          <button
+            className="accept-video-button"
+            onClick={this.acceptVideoChat.bind(this)}
+          >
+            Let's do it
+          </button>
+          <button
+            className="reject-video-button"
+            onClick={this.denyVideoChat.bind(this)}
+          >
+            I'd rather not
+          </button>
         </Modal>
       </div>
     )

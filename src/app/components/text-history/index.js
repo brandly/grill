@@ -1,6 +1,5 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import URI from 'URIjs'
 import classNames from 'classnames'
 import ConversationStore from '../../stores/conversation-store'
@@ -8,8 +7,6 @@ import ConversationStore from '../../stores/conversation-store'
 const IMAGE_REGEX = /\.(jpe?g|png|gif|svg)$/i
 
 export default class TextChat extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   scrollToBottom() {
     const el = React.findDOMNode(this.refs.scroller)
     el.scrollTop = el.scrollHeight
@@ -28,10 +25,10 @@ export default class TextChat extends React.Component {
       if (value !== undefined) {
         if (i + 1 < split.length && split[i + 1] === undefined) {
           result.push(
-            <a key={i}
-               href={value}
-               target="_blank">{value}</a>
-            )
+            <a key={i} href={value} target="_blank">
+              {value}
+            </a>
+          )
         } else {
           result.push(value)
         }
@@ -44,7 +41,8 @@ export default class TextChat extends React.Component {
     const urls = text.match(URI.find_uri_expression)
 
     if (urls) {
-      return urls.filter((url) => {
+      return urls
+        .filter((url) => {
           return IMAGE_REGEX.test(url)
         })
         .map((imgUrl, i) => {
@@ -61,7 +59,7 @@ export default class TextChat extends React.Component {
   createMessage(text, i) {
     const { texts, peerId, idToName } = this.props
 
-    const showFrom = (i === 0 || texts.get(i - 1).from !== text.from)
+    const showFrom = i === 0 || texts.get(i - 1).from !== text.from
     const classes = classNames({
       sent: text.from === peerId,
       received: text.from !== peerId,
@@ -70,9 +68,13 @@ export default class TextChat extends React.Component {
 
     return (
       <li className={classes} key={i}>
-        {showFrom ? (<h3 className="message-from">{idToName[text.from] || text.from}</h3>) : null}
+        {showFrom ? (
+          <h3 className="message-from">{idToName[text.from] || text.from}</h3>
+        ) : null}
         <p className="message-value">{this.linkify(text.value)}</p>
-        <abbr className="message-when" title={fullDate(text.when)}>{timestamp(text.when)}</abbr>
+        <abbr className="message-when" title={fullDate(text.when)}>
+          {timestamp(text.when)}
+        </abbr>
         {this.getImages(text.value)}
       </li>
     )
@@ -81,7 +83,9 @@ export default class TextChat extends React.Component {
   createLog(text, i) {
     return (
       <li className="log" key={i}>
-        <p><span className="log-value">{text.value}</span></p>
+        <p>
+          <span className="log-value">{text.value}</span>
+        </p>
       </li>
     )
   }
@@ -114,9 +118,7 @@ export default class TextChat extends React.Component {
 
     return (
       <div className="scrolling-panel" ref="scroller">
-        <ul className="text-list">
-          {textElements.toArray()}
-        </ul>
+        <ul className="text-list">{textElements.toArray()}</ul>
       </div>
     )
   }
@@ -124,18 +126,20 @@ export default class TextChat extends React.Component {
 
 function timestamp(d) {
   const basicHours = d.getHours()
-  const postfix = (basicHours < 12) ? 'AM' : 'PM'
-  const hours = (basicHours > 12) ? (basicHours - 12) : basicHours
+  const postfix = basicHours < 12 ? 'AM' : 'PM'
+  const hours = basicHours > 12 ? basicHours - 12 : basicHours
   return `${hours}:${twoDigits(d.getMinutes())} ${postfix}`
 }
 
 function fullDate(d) {
-  return `${daysOfWeek[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${timestamp(d)}`
+  return `${daysOfWeek[d.getDay()]}, ${
+    months[d.getMonth()]
+  } ${d.getDate()}, ${d.getFullYear()} at ${timestamp(d)}`
 }
 
 function twoDigits(num) {
   num = num.toString()
-  return (num.length < 2) ? ('0' + num) : num
+  return num.length < 2 ? '0' + num : num
 }
 
 const daysOfWeek = [
@@ -162,5 +166,3 @@ const months = [
   'November',
   'December'
 ]
-
-export { TextChat as default }

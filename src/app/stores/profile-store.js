@@ -28,10 +28,10 @@ const ProfileStore = assign({}, EventEmitter, {
   getIdToNameMap() {
     // kinda sketchy
     return this.names
-  },
+  }
 })
 
-ProfileStore.dispatchToken = grillDispatcher.register(action => {
+ProfileStore.dispatchToken = grillDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.SET_NAME_FOR_ID:
       ProfileStore.setNameForId(action.name, action.id)

@@ -1,12 +1,9 @@
 import './index.css'
 import React from 'react'
-import { addons } from 'react/addons'
 import ProfileActions from '../../actions/profile-actions'
 import PeerStore from '../../stores/peer-store'
 
 export default class ChangeName extends React.Component {
-  mixins: [addons.PureRenderMixin]
-
   constructor(props) {
     super(props)
     this.state = {
@@ -43,12 +40,17 @@ export default class ChangeName extends React.Component {
 
   render() {
     return (
-      <form className="change-name" onSubmit={this.handleFormSubmission.bind(this)}>
-        <input type="text"
-               placeholder="My name is..."
-               required
-               value={this.state.name}
-               onChange={this.handleChange.bind(this)} />
+      <form
+        className="change-name"
+        onSubmit={this.handleFormSubmission.bind(this)}
+      >
+        <input
+          type="text"
+          placeholder="My name is..."
+          required
+          value={this.state.name}
+          onChange={this.handleChange.bind(this)}
+        />
         <input type="submit" />
       </form>
     )

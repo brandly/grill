@@ -27,7 +27,7 @@ const Actions = {
       type: ActionTypes.RECEIVE_CALL,
       call
     })
-  },
+  }
 }
 
 export { Actions as default }
