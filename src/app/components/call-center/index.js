@@ -1,5 +1,6 @@
 import './index.css'
 import React from 'react'
+const { useRef, useEffect } = React
 import InlineSvg from 'react-inlinesvg'
 import PeerActions from '../../actions/peer-actions'
 import CallActions from '../../actions/call-actions'
@@ -31,10 +32,6 @@ export default class CallCenter extends React.Component {
     CallStore.removeChangeListener(this._onChange)
   }
 
-  initiateVideoChat() {
-    PeerActions.initiateCall(stream)
-  }
-
   endCall() {
     CallActions.endCall()
   }
@@ -48,16 +45,15 @@ export default class CallCenter extends React.Component {
 
     return (
       <div className="call-center">
-        <video
+        <Video
           className="friend-video"
-          src={URL.createObjectURL(remoteStream)}
-          autoPlay
+          videoProps={{ autoPlay: true }}
+          src={remoteStream}
         />
-        <video
+        <Video
           className="my-video"
-          src={URL.createObjectURL(localStream)}
-          autoPlay
-          muted
+          videoProps={{ autoPlay: true, muted: true }}
+          src={localStream}
         />
         <button className="end-call-button" onClick={this.endCall.bind(this)}>
           <InlineSvg src={closeSvg}></InlineSvg>
@@ -65,4 +61,12 @@ export default class CallCenter extends React.Component {
       </div>
     )
   }
+}
+
+const Video = ({ className, videoProps, src }) => {
+  const ref = useRef(null)
+  useEffect(() => {
+    ref.current.srcObject = src
+  }, [src.id])
+  return <video className={className} {...videoProps} ref={ref}></video>
 }
