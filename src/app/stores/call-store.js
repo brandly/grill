@@ -6,12 +6,13 @@ import PeerStore from './peer-store'
 import askForMedia from '../modules/ask-for-media'
 import LoopingAudio from '../modules/looping-audio'
 import CallActions from '../actions/call-actions'
+import Beat from '../../grillz_loop.webm'
 
 const CallStore = assign({}, EventEmitter, {
   call: null,
   localStream: null,
   remoteStream: null,
-  ringer: new LoopingAudio('grillz_loop.webm'),
+  ringer: new LoopingAudio(Beat),
 
   hasCall() {
     return !!this.call
