@@ -3,4 +3,5 @@ node_modules/
 *.log
 dist
 gh-pages
+.DS_Store
 
