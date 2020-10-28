@@ -17,4 +17,4 @@ const EE = assign({}, EventEmitter.prototype, {
   }
 })
 
-export { EE as default }
+export default EE

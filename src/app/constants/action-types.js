@@ -26,4 +26,4 @@ const types = keyMirror({
   RECEIVE_STOP_TYPING: null
 })
 
-export { types as default }
+export default types

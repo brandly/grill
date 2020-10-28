@@ -146,4 +146,4 @@ CallStore.dispatchToken = grillDispatcher.register((action) => {
   }
 })
 
-export { CallStore as default }
+export default CallStore

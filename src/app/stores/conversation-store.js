@@ -119,4 +119,4 @@ ConversationStore.dispatchToken = grillDispatcher.register((action) => {
   }
 })
 
-export { ConversationStore as default }
+export default ConversationStore

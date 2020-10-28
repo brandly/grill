@@ -1,22 +1,27 @@
 import './index.css'
 import React from 'react'
+const { useRef } = React
 import URI from 'URIjs'
 import classNames from 'classnames'
 import ConversationStore from '../../stores/conversation-store'
 
 const IMAGE_REGEX = /\.(jpe?g|png|gif|svg)$/i
 
-export default class TextChat extends React.Component {
-  scrollToBottom() {
-    const el = React.findDOMNode(this.refs.scroller)
-    el.scrollTop = el.scrollHeight
+//   scrollToBottom() {
+//     const el = React.findDOMNode(this.refs.scroller)
+//     el.scrollTop = el.scrollHeight
+//   }
+//   componentDidUpdate() {
+//     this.scrollToBottom()
+//   }
+
+const TextChat = (props) => {
+  const { texts, isFriendTyping } = props
+  if (!texts) {
+    return null
   }
 
-  componentDidUpdate() {
-    this.scrollToBottom()
-  }
-
-  linkify(text) {
+  const linkify = (text) => {
     const split = text.split(URI.find_uri_expression)
     const result = []
 
@@ -37,27 +42,8 @@ export default class TextChat extends React.Component {
     return result
   }
 
-  getImages(text) {
-    const urls = text.match(URI.find_uri_expression)
-
-    if (urls) {
-      return urls
-        .filter((url) => {
-          return IMAGE_REGEX.test(url)
-        })
-        .map((imgUrl, i) => {
-          const key = 'img-' + i
-          return (
-            <a href={imgUrl} target="_blank" key={key}>
-              <img className="img-preview" src={imgUrl} />
-            </a>
-          )
-        })
-    }
-  }
-
-  createMessage(text, i) {
-    const { texts, peerId, idToName } = this.props
+  const createMessage = (text, i) => {
+    const { texts, peerId, idToName } = props
 
     const showFrom = i === 0 || texts.get(i - 1).from !== text.from
     const classes = classNames({
@@ -68,60 +54,70 @@ export default class TextChat extends React.Component {
 
     return (
       <li className={classes} key={i}>
-        {showFrom ? (
+        {showFrom && (
           <h3 className="message-from">{idToName[text.from] || text.from}</h3>
-        ) : null}
-        <p className="message-value">{this.linkify(text.value)}</p>
+        )}
+        <p className="message-value">{linkify(text.value)}</p>
         <abbr className="message-when" title={fullDate(text.when)}>
           {timestamp(text.when)}
         </abbr>
-        {this.getImages(text.value)}
+        <Images text={text.value} />
       </li>
     )
   }
 
-  createLog(text, i) {
-    return (
-      <li className="log" key={i}>
-        <p>
-          <span className="log-value">{text.value}</span>
-        </p>
+  let textElements = texts.map((text, i) => {
+    switch (text.type) {
+      case 'message':
+        return createMessage(text, i)
+        break
+      case 'log':
+        return (
+          <li className="log" key={i}>
+            <p>
+              <span className="log-value">{text.value}</span>
+            </p>
+          </li>
+        )
+    }
+  })
+
+  if (isFriendTyping) {
+    textElements = textElements.push(
+      <li key="is-friend-typing">
+        <p className="is-friend-typing">typing...</p>
       </li>
     )
   }
 
-  render() {
-    const { texts, isFriendTyping } = this.props
+  const scroller = useRef(null)
 
-    if (!texts) {
-      return null
-    }
+  return (
+    <div className="scrolling-panel" ref={scroller}>
+      <ul className="text-list">{textElements.toArray()}</ul>
+    </div>
+  )
+}
+export default TextChat
 
-    let textElements = texts.map((text, i) => {
-      switch (text.type) {
-        case 'message':
-          return this.createMessage(text, i)
-          break
-        case 'log':
-          return this.createLog(text, i)
-          break
-      }
-    })
+const Images = ({ text }) => {
+  const urls = text.match(URI.find_uri_expression)
 
-    if (isFriendTyping) {
-      textElements = textElements.push(
-        <li key="is-friend-typing">
-          <p className="is-friend-typing">typing...</p>
-        </li>
-      )
-    }
-
-    return (
-      <div className="scrolling-panel" ref="scroller">
-        <ul className="text-list">{textElements.toArray()}</ul>
-      </div>
-    )
+  if (urls) {
+    return urls
+      .filter((url) => {
+        return IMAGE_REGEX.test(url)
+      })
+      .map((imgUrl, i) => {
+        const key = 'img-' + i
+        return (
+          <a href={imgUrl} target="_blank" key={key}>
+            <img className="img-preview" src={imgUrl} />
+          </a>
+        )
+      })
   }
+  return null
 }
 
 function timestamp(d) {

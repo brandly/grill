@@ -54,4 +54,4 @@ NotificationStore.dispatchToken = grillDispatcher.register((action) => {
   }
 })
 
-export { NotificationStore as default }
+export default NotificationStore
