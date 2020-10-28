@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "parcel src/index.html",
-    "deploy": "parcel build index.html --public-url ./ && gh-pages --dist dist/",
+    "deploy": "parcel build src/index.html --public-url ./ && gh-pages --dist dist/",
     "clean": "rm dist/* & rm gh-pages/*"
   },
   "license": "MIT",
