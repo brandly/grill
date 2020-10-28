@@ -9,4 +9,4 @@ const Actions = {
   }
 }
 
-export { Actions as default }
+export default Actions

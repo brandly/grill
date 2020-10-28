@@ -43,4 +43,4 @@ ProfileStore.dispatchToken = grillDispatcher.register((action) => {
   }
 })
 
-export { ProfileStore as default }
+export default ProfileStore

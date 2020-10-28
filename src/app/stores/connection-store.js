@@ -157,4 +157,4 @@ ConnectionStore.dispatchToken = grillDispatcher.register((action) => {
   }
 })
 
-export { ConnectionStore as default }
+export default ConnectionStore

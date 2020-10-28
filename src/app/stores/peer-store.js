@@ -108,4 +108,4 @@ PeerStore.dispatchToken = grillDispatcher.register((action) => {
   }
 })
 
-export { PeerStore as default }
+export default PeerStore
