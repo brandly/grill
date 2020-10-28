@@ -14,8 +14,7 @@ if (!webrtcSupport.support) {
 
 const qs = queryString.parse(location.search)
 
-const key = 'n5l6va0xfzaaif6r'
-const peer = new Peer({ key })
+const peer = new Peer()
 
 peer.on('open', function (id) {
   PeerActions.receivePeerId(id)
