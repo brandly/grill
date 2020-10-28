@@ -1,0 +1,8 @@
+<!-- SVG created by Mark Brandly http://twitter.com/markbrandly -->
+<svg class='svg-close' fill='none' x="0px" y="0px" viewBox="0 0 32 32">
+  <circle class='svg-close-circle' stroke-linecap="round" stroke-miterlimit="10" cx="16" cy="16" r="14"/>
+  <g class='svg-close-x' stroke-linecap="round" stroke-miterlimit="10">
+    <line class='svg-close-x-line1' x1="10" y1="10" x2="22" y2="22"/>
+    <line class='svg-close-x-line2' x1="10" y1="22" x2="22" y2="10"/>
+  </g>
+</svg>
