@@ -14,7 +14,11 @@ if (!webrtcSupport.support) {
 
 const qs = queryString.parse(location.search)
 
-const peer = new Peer()
+const peer = new Peer({
+  host: 'grill-signal.herokuapp.com',
+  port: 80,
+  path: '/'
+})
 
 peer.on('open', function (id) {
   PeerActions.receivePeerId(id)
