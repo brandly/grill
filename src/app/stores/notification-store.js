@@ -6,9 +6,13 @@ import Notify from 'notifyjs'
 import Visibility from 'visibilityjs'
 
 if (Notify.isSupported) {
-  Notify.requestPermission(() => {
-    NotificationStore.isPermitted = true
-  })
+  try {
+    Notify.requestPermission(() => {
+      NotificationStore.isPermitted = true
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 Visibility.change((e, value) => {
