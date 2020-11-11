@@ -33821,7 +33821,11 @@ if (!_webrtcsupport.default.support) {
 
 var qs = _queryString.default.parse(location.search);
 
-var peer = new _peerjs.default();
+var peer = new _peerjs.default({
+  host: 'grill-signal.herokuapp.com',
+  port: 80,
+  path: '/'
+});
 peer.on('open', function (id) {
   _peerActions.default.receivePeerId(id);
 
@@ -38279,9 +38283,13 @@ var _visibilityjs = _interopRequireDefault(require("visibilityjs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (_notifyjs.default.isSupported) {
-  _notifyjs.default.requestPermission(function () {
-    NotificationStore.isPermitted = true;
-  });
+  try {
+    _notifyjs.default.requestPermission(function () {
+      NotificationStore.isPermitted = true;
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 _visibilityjs.default.change(function (e, value) {
@@ -49059,7 +49067,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59790" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59298" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
